@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>ROOT-OS | Ultimate Dev & Creator Workstation</title>
+  
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <style>
+    :root {
+      --bg-dark: #07090e;
+      --card-bg: rgba(15, 23, 42, 0.75);
+      --accent-cyan: #38bdf8;
+      --accent-purple: #c084fc;
+      --accent-green: #22c55e;
+      --accent-orange: #f59e0b;
+      --border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    code, pre, .terminal-text {
+      font-family: 'Fira Code', monospace;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: #f1f5f9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(192, 132, 252, 0.08) 0%, transparent 40%);
+    }
+
+    /* Top Cyber Navigation */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 6%;
+      background: rgba(11, 15, 25, 0.9);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #07090e;
+      font-weight: 800;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    }
+
+    .brand-text {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--accent-cyan);
+    }
+
+    .brand-text span {
+      color: var(--accent-purple);
+    }
+
+    .sys-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-green);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.4; }
+      50% { opacity: 1; }
+      100% { opacity: 0.4; }
+    }
+
+    /* Live Crypto Marquee Ticker */
+    .ticker-bar {
+      background: rgba(15, 23, 42, 0.6);
+      border-bottom: 1px solid var(--border-color);
+      padding: 8px 6%;
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      white-space: nowrap;
+      font-size: 0.8rem;
+      scrollbar-width: none;
+    }
+
+    .ticker-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .crypto-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+    }
+
+    .crypto-price {
+      font-weight: 700;
+      color: var(--accent-cyan);
+    }
+
+    /* Tab Menu */
+    .tab-navigation {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 24px 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 10px 22px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: #94a3b8;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+    }
+
+    .tab-btn:hover, .tab-btn.active {
+      color: #fff;
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+    }
+
+    /* Layout Containers */
+    .workspace-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+      width: 100%;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* MODULE 1: Cyberpunk Interactive Terminal */
+    .terminal-card {
+      background: #030712;
+      border-radius: 16px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+    }
+
+    .terminal-header {
+      background: #111827;
+      padding: 12px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 7px;
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #eab308; }
+    .dot-green { background: #22c55e; }
+
+    .terminal-body {
+      padding: 20px;
+      min-height: 380px;
+      max-height: 480px;
+      overflow-y: auto;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #38bdf8;
+    }
+
+    .terminal-output {
+      margin-bottom: 14px;
+      white-space: pre-wrap;
+    }
+
+    .terminal-prompt-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .prompt-label {
+      color: var(--accent-green);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .terminal-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #f1f5f9;
+      font-size: 0.95rem;
+      caret-color: var(--accent-cyan);
+    }
+
+    /* MODULE 2: Developer Utility Box */
+    .panel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .tool-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 22px;
+      backdrop-filter: blur(10px);
+    }
+
+    .tool-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    textarea, input[type="text"] {
+      width: 100%;
+      background: #090d16;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 12px;
+      color: #f1f5f9;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    textarea:focus, input[type="text"]:focus {
+      border-color: var(--accent-cyan);
+    }
+
+    .action-btn {
+      width: 100%;
+      padding: 11px;
+      margin-top: 12px;
+      background: linear-gradient(90deg, var(--accent-cyan), #6366f1);
+      color: #07090e;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: opacity 0.2s;
+    }
+
+    .action-btn:hover {
+      opacity: 0.92;
+    }
+
+    /* MODULE 3: Creator Studio Engine */
+    .creator-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 26px;
+      backdrop-filter: blur(10px);
+    }
+
+    .creator-output-box {
+      margin-top: 20px;
+      background: #07090e;
+      border-radius: 12px;
+      padding: 18px;
+      border: 1px dashed rgba(192, 132, 252, 0.4);
+      display: none;
+    }
+
+    .badge-pill {
+      display: inline-block;
+      padding: 3px 9px;
+      background: rgba(192, 132, 252, 0.15);
+      border: 1px solid rgba(192, 132, 252, 0.3);
+      color: var(--accent-purple);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    /* MODULE 4: Live Crypto Tracker Cards */
+    .crypto-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .coin-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .coin-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--accent-cyan);
+    }
+
+    .coin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .coin-symbol {
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+
+    .coin-val {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .coin-change {
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .positive { color: var(--accent-green); }
+    .negative { color: #ef4444; }
+
+    footer {
+      text-align: center;
+      padding: 22px;
+      border-top: 1px solid var(--border-color);
+      color: #64748b;
+      font-size: 0.85rem;
+      margin-top: auto;
+    }
+
+    footer strong {
+      color: var(--accent-cyan);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Cyber Bar -->
+  <header>
+    <div class="brand">
+      <div class="brand-icon"><i class="fa-solid fa-terminal"></i></div>
+      <div class="brand-text">ROOT<span>X</span></div>
+    </div>
+    <div class="sys-status">
+      <div class="pulse-dot"></div>
+      <span>Core Active &bull; 2026 Ready</span>
+    </div>
+  </header>
+
+  <!-- Live Market Ticker -->
+  <div class="ticker-bar" id="tickerBar">
+    <div class="crypto-item">
+      <span>BTC/USDT:</span> <span class="crypto-price" id="t-btc">লোড হচ্ছে...</span>
+    </div>
+    <div class="crypto-item">
+      <span>ETH/USDT:</span> <span class="crypto-price" id="t-eth">লোড হচ্ছে...</span>
+    </div>
+    <div class="crypto-item">
+      <span>SOL/USDT:</span> <span class="crypto-price" id="t-sol">লোড হচ্ছে...</span>
+    </div>
+    <div class="crypto-item">
+      <span>BNB/USDT:</span> <span class="crypto-price" id="t-bnb">লোড হচ্ছে...</span>
+    </div>
+  </div>
+
+  <!-- Navigation Tabs -->
+  <div class="tab-navigation">
+    <button class="tab-btn active" onclick="switchTab('terminal', event)">
+      <i class="fa-solid fa-terminal"></i> টার্মিনাল পোর্টফোলিও
+    </button>
+    <button class="tab-btn" onclick="switchTab('devtools', event)">
+      <i class="fa-solid fa-code"></i> অটোমেশন ও ডেভ টুলস
+    </button>
+    <button class="tab-btn" onclick="switchTab('creator', event)">
+      <i class="fa-solid fa-wand-magic-sparkles"></i> ক্রিয়েটর স্টুডিও
+    </button>
+    <button class="tab-btn" onclick="switchTab('crypto', event)">
+      <i class="fa-solid fa-chart-line"></i> লাইভ মার্কেট ডাটা
+    </button>
+  </div>
+
+  <div class="workspace-container">
+
+    <!-- TAB 1: CYBERPUNK TERMINAL -->
+    <div id="tab-terminal" class="tab-content active">
+      <div class="terminal-card">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
+          </div>
+          <span style="font-size: 0.8rem; color: #64748b;">root@workstation:~</span>
+        </div>
+        <div class="terminal-body" id="termBody" onclick="focusTerminal()">
+          <div class="terminal-output" id="termOutput">
+=====================================================
+⚡ স্বাগতম ROOTX সাইবার টার্মিনাল সিস্টেমে!
+কমান্ডের তালিকা দেখতে টাইপ করুন: 'help'
+=====================================================
+          </div>
+          <div class="terminal-prompt-line">
+            <span class="prompt-label">visitor@rootx:~$</span>
+            <input type="text" id="termInput" class="terminal-input" autocomplete="off" autofocus />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: DEVELOPER & AUTOMATION TOOLS -->
+    <div id="tab-devtools" class="tab-content">
+      <div class="panel-grid">
+        <!-- JSON Cleaner & Formatter -->
+        <div class="tool-card">
+          <div class="tool-title">
+            <i class="fa-solid fa-brackets-curly"></i> JSON প্রিটিফাই ও ভ্যালিডেটর
+          </div>
+          <textarea id="jsonInput" rows="6" placeholder='{"status":"ok","code":200}'></textarea>
+          <button class="action-btn" onclick="formatJSON()">
+            <i class="fa-solid fa-bolt"></i> ফর্ম্যাট ও ভ্যালিডেট
+          </button>
+          <p id="jsonResult" style="font-size: 0.8rem; margin-top: 8px;"></p>
+        </div>
+
+        <!-- Python RegEx Tester -->
+        <div class="tool-card">
+          <div class="tool-title">
+            <i class="fa-brands fa-python"></i> পাইথন রেগুলার এক্সপ্রেশন টেস্টার
+          </div>
+          <input type="text" id="regexPattern" placeholder="প্যাটার্ন লিখুন (যেমন: [0-9]+)" style="margin-bottom: 8px;" />
+          <textarea id="regexText" rows="4" placeholder="টেস্টিং টেক্সট লিখুন..."></textarea>
+          <button class="action-btn" onclick="testRegEx()">
+            <i class="fa-solid fa-magnifying-glass"></i> ম্যাচিং টেস্ট করুন
+          </button>
+          <p id="regexResult" style="font-size: 0.85rem; margin-top: 8px; color: var(--accent-cyan);"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: CREATOR STUDIO ENGINE -->
+    <div id="tab-creator" class="tab-content">
+      <div class="creator-panel">
+        <div class="tool-title">
+          <i class="fa-solid fa-video"></i> এআই ভাইরাল স্ক্রিপ্ট ও হুক জেনারেটর
+        </div>
+        <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 16px;">
+          আপনার ভিডিওর মূল টপিক লিখুন। সিস্টেম স্বয়ংক্রিয়ভাবে একটি আকর্ষণীয় ওপেনিং হুক, অ্যানিমেশন স্ক্রিপ্ট ধারণা এবং হ্যাশট্যাগ তৈরি করে দেবে।
+        </p>
+        
+        <input type="text" id="creatorTopic" placeholder="যেমন: AI দিয়ে ভবিষ্যৎ রোবট তৈরি, অনলাইন সিকিউরিটি টিপস..." />
+        <button class="action-btn" onclick="generateViralPack()" style="margin-top: 14px;">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> ভাইরাল প্যাক তৈরি করুন
+        </button>
+
+        <div id="creatorOutput" class="creator-output-box">
+          <div class="badge-pill">🔥 রিকমেন্ডেড হুক</div>
+          <h4 id="outHook" style="color: var(--accent-cyan); margin-bottom: 12px;"></h4>
+
+          <div class="badge-pill">🎬 স্ক্রিপ্ট কনসেপ্ট</div>
+          <p id="outScript" style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.6; margin-bottom: 14px;"></p>
+
+          <div class="badge-pill">🏷️ এসইও ট্যাগ ও হ্যাশট্যাগ</div>
+          <p id="outTags" style="color: var(--accent-purple); font-size: 0.85rem; font-weight: 600;"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: CRYPTO MARKET MONITOR -->
+    <div id="tab-crypto" class="tab-content">
+      <div class="crypto-grid">
+        <div class="coin-card">
+          <div class="coin-header">
+            <span class="coin-symbol">Bitcoin (BTC)</span>
+            <i class="fa-brands fa-bitcoin fa-lg" style="color: #f59e0b;"></i>
+          </div>
+          <div class="coin-val" id="btcVal">---</div>
+          <div class="coin-change positive" id="btcStat"><i class="fa-solid fa-arrow-trend-up"></i> লাইভ আপডেট</div>
+        </div>
+
+        <div class="coin-card">
+          <div class="coin-header">
+            <span class="coin-symbol">Ethereum (ETH)</span>
+            <i class="fa-brands fa-ethereum fa-lg" style="color: #6366f1;"></i>
+          </div>
+          <div class="coin-val" id="ethVal">---</div>
+          <div class="coin-change positive" id="ethStat"><i class="fa-solid fa-arrow-trend-up"></i> লাইভ আপডেট</div>
+        </div>
+
+        <div class="coin-card">
+          <div class="coin-header">
+            <span class="coin-symbol">Solana (SOL)</span>
+            <i class="fa-solid fa-bolt fa-lg" style="color: #14f195;"></i>
+          </div>
+          <div class="coin-val" id="solVal">---</div>
+          <div class="coin-change positive" id="solStat"><i class="fa-solid fa-arrow-trend-up"></i> লাইভ আপডেট</div>
+        </div>
+
+        <div class="coin-card">
+          <div class="coin-header">
+            <span class="coin-symbol">Binance Coin (BNB)</span>
+            <i class="fa-solid fa-coins fa-lg" style="color: #facc15;"></i>
+          </div>
+          <div class="coin-val" id="bnbVal">---</div>
+          <div class="coin-change positive" id="bnbStat"><i class="fa-solid fa-arrow-trend-up"></i> লাইভ আপডেট</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Engineered with Precision &bull; <strong>ROOT-OS Workstation</strong> &copy; 2026</p>
+  </footer>
+
+  <script>
+    // Tab Switching Logic
+    function switchTab(tabId, event) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+      event.currentTarget.classList.add('active');
+      document.getElementById(`tab-${tabId}`).classList.add('active');
+    }
+
+    // 1. Terminal Logic
+    const termInput = document.getElementById('termInput');
+    const termOutput = document.getElementById('termOutput');
+    const termBody = document.getElementById('termBody');
+
+    function focusTerminal() {
+      termInput.focus();
+    }
+
+    const commandRegistry = {
+      help: `উপলব্ধ কমান্ডসমূহ:
+  • whoami    : সিস্টেম ও ডেভেলপার পরিচিতি
+  • skills    : টেকনোলজি ও অটোমেশন দক্ষতা
+  • projects  : সাম্প্রতিক প্রজেক্টস
+  • date      : বর্তমান সময় ও তারিখ
+  • clear     : টার্মিনাল পরিষ্কার করা`,
+      whoami: `ব্যবহারকারী: Emon Khan (Root Developer)
+রোল: Python Automation Specialist & Digital Content Creator
+মিশন: আধুনিক টুলিং ও অটোমেশন দিয়ে সমাধান তৈরি করা।`,
+      skills: `[+] Python, WebSockets, Pandas, NumPy
+[+] Automation & Scripting (Termux/Linux)
+[+] Full-Stack Frontend Engineering (HTML5/CSS3/Modern JS)
+[+] AI Prompt Architecture & Video Production`,
+      projects: `1. ROOTX Automations - কাস্টম স্ক্রিপ্টিং স্যুট
+2. Instant Cloud Arcade - মাল্টি-গেম ক্লাউড পোর্টাল
+3. Algorithmic Trend Engine - টেকনিক্যাল মার্কেট অ্যানালাইসিস`,
+      date: () => new Date().toLocaleString('bn-BD')
+    };
+
+    termInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        const cmd = this.value.trim().toLowerCase();
+        if (cmd === '') return;
+
+        if (cmd === 'clear') {
+          termOutput.innerText = '';
+          this.value = '';
+          return;
+        }
+
+        let response = '';
+        if (commandRegistry[cmd]) {
+          response = typeof commandRegistry[cmd] === 'function' ? commandRegistry[cmd]() : commandRegistry[cmd];
+        } else {
+          response = `কমান্ডটি পাওয়া যায়নি: '${cmd}'। কমান্ডের তালিকা দেখতে লিখুন: 'help'`;
+        }
+
+        termOutput.innerText += `\nvisitor@rootx:~$ ${cmd}\n${response}\n`;
+        this.value = '';
+        termBody.scrollTop = termBody.scrollHeight;
+      }
+    });
+
+    // 2. DevTools Engine
+    function formatJSON() {
+      const input = document.getElementById('jsonInput').value;
+      const res = document.getElementById('jsonResult');
+      try {
+        const parsed = JSON.parse(input);
+        document.getElementById('jsonInput').value = JSON.stringify(parsed, null, 2);
+        res.style.color = 'var(--accent-green)';
+        res.innerText = '✓ JSON সম্পূর্ণ সঠিক এবং ফর্ম্যাট সম্পন্ন!';
+      } catch (err) {
+        res.style.color = '#ef4444';
+        res.innerText = '✕ অবৈধ JSON ফরম্যাট: ' + err.message;
+      }
+    }
+
+    function testRegEx() {
+      const pat = document.getElementById('regexPattern').value;
+      const text = document.getElementById('regexText').value;
+      const res = document.getElementById('regexResult');
+      try {
+        const regex = new RegExp(pat, 'g');
+        const matches = text.match(regex);
+        if (matches) {
+          res.innerText = `ম্যাচ পাওয়া গেছে (${matches.length} টি): [ ${matches.join(', ')} ]`;
+        } else {
+          res.innerText = 'কোনো মিল পাওয়া যায়নি।';
+        }
+      } catch (e) {
+        res.innerText = 'ভুল রেজেক্স সিনট্যাক্স!';
+      }
+    }
+
+    // 3. Creator Studio Logic
+    function generateViralPack() {
+      const topic = document.getElementById('creatorTopic').value.trim();
+      if (!topic) {
+        alert('অনুগ্রহ করে একটি টপিক লিখুন!');
+        return;
+      }
+
+      document.getElementById('outHook').innerText = `"${topic}: যা আপনি আগে কখনও জানতেন না!"`;
+      document.getElementById('outScript').innerText = `[Scene 1: ৩ সেকেন্ডের মধ্যে স্ক্রিনে চমকপ্রদ ভিজ্যুয়াল] -> "${topic} নিয়ে মানুষের সবচেয়ে বড় ভুল ধারণাটি কী জানেন?" \n[Scene 2: মূল সমাধান এবং বাস্তব প্রয়োগ ব্যাখ্যা] -> "ধাপ ১: সঠিক টেকনিক অনুসরণ করা..." \n[Scene 3: কল টু অ্যাকশন] -> "পরবর্তী পার্ট দেখতে এখনই ফলো করুন!"`;
+      document.getElementById('outTags').innerText = `#${topic.replace(/\s+/g, '')} #Trending #TechHacks #ReelsViral #Shorts #Automation`;
+
+      document.getElementById('creatorOutput').style.display = 'block';
+    }
+
+    // 4. Crypto Real-time Price Tracker
+    async function fetchCryptoPrices() {
+      try {
+        const res = await fetch('https://api.binance.com/api/v3/ticker/price?symbols=["BTCUSDT","ETHUSDT","SOLUSDT","BNBUSDT"]');
+        const data = await res.json();
+
+        data.forEach(item => {
+          const price = parseFloat(item.price).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+          if (item.symbol === 'BTCUSDT') {
+            document.getElementById('btcVal').innerText = `$${price}`;
+            document.getElementById('t-btc').innerText = `$${price}`;
+          } else if (item.symbol === 'ETHUSDT') {
+            document.getElementById('ethVal').innerText = `$${price}`;
+            document.getElementById('t-eth').innerText = `$${price}`;
+          } else if (item.symbol === 'SOLUSDT') {
+            document.getElementById('solVal').innerText = `$${price}`;
+            document.getElementById('t-sol').innerText = `$${price}`;
+          } else if (item.symbol === 'BNBUSDT') {
+            document.getElementById('bnbVal').innerText = `$${price}`;
+            document.getElementById('t-bnb').innerText = `$${price}`;
+          }
+        });
+      } catch (e) {
+        // Fallback demo prices if offline
+        document.getElementById('btcVal').innerText = '$88,450.00';
+        document.getElementById('ethVal').innerText = '$3,420.50';
+        document.getElementById('solVal').innerText = '$192.10';
+        document.getElementById('bnbVal').innerText = '$612.30';
+      }
+    }
+
+    // Initialize Auto-Polling
+    fetchCryptoPrices();
+    setInterval(fetchCryptoPrices, 10000);
+  </script>
+</body>
+</html>
