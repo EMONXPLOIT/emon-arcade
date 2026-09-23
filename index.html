@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>EMON OS PRO | Web3 Crypto Terminal & Market Watch</title>
+  <title>EMON PRO TRADER | Next-Gen Crypto Exchange</title>
   
   <!-- Fonts & Font Awesome -->
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -11,8 +11,8 @@
 
   <style>
     :root {
-      --bg-main: #060810;
-      --bg-panel: rgba(13, 18, 30, 0.85);
+      --bg-dark: #07090e;
+      --panel-bg: rgba(14, 20, 33, 0.85);
       --border: rgba(255, 255, 255, 0.08);
       --accent-cyan: #38bdf8;
       --accent-purple: #c084fc;
@@ -29,25 +29,25 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    code, pre, .mono {
+    .mono {
       font-family: 'Fira Code', monospace;
     }
 
     body {
-      background-color: var(--bg-main);
+      background-color: var(--bg-dark);
       color: #f1f5f9;
       min-height: 100vh;
-      overflow-x: hidden;
       display: flex;
       flex-direction: column;
+      overflow-x: hidden;
     }
 
-    /* Top Navigation */
+    /* Top Exchange Navbar */
     header {
-      background: rgba(11, 15, 25, 0.95);
+      background: rgba(11, 16, 26, 0.95);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
-      padding: 12px 4%;
+      padding: 10px 3%;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -59,182 +59,123 @@
     .brand-box {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .logo-badge {
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-      border-radius: 10px;
+      border-radius: 9px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #060810;
-      font-size: 1.1rem;
+      color: #000;
       font-weight: 800;
-      box-shadow: 0 0 18px rgba(56, 189, 248, 0.4);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
     }
 
-    .logo-text {
-      font-size: 1.25rem;
+    .brand-title {
+      font-size: 1.2rem;
       font-weight: 800;
       letter-spacing: 1px;
       color: var(--accent-cyan);
     }
 
-    .logo-text span {
+    .brand-title span {
       color: var(--accent-purple);
     }
 
-    .header-actions {
+    .account-balance-bar {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 15px;
     }
 
-    .connect-wallet-btn {
+    .wallet-box {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+    }
+
+    .wallet-btn {
       background: linear-gradient(90deg, #0284c7, #9333ea);
-      color: #fff;
       border: none;
-      padding: 8px 16px;
+      color: #fff;
+      padding: 7px 16px;
       border-radius: 20px;
       font-size: 0.82rem;
       font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 7px;
-      box-shadow: 0 0 12px rgba(147, 51, 234, 0.4);
-      transition: 0.25s;
+      gap: 6px;
+      transition: 0.2s;
     }
 
-    .connect-wallet-btn:hover {
+    .wallet-btn:hover {
       transform: scale(1.03);
     }
 
     /* Stream Ticker Bar */
-    .ticker-stream {
-      background: rgba(13, 18, 30, 0.7);
+    .ticker-bar {
+      background: rgba(14, 20, 33, 0.7);
       border-bottom: 1px solid var(--border);
-      padding: 7px 4%;
+      padding: 6px 3%;
       display: flex;
-      gap: 18px;
+      gap: 16px;
       overflow-x: auto;
       white-space: nowrap;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       scrollbar-width: none;
     }
 
-    .ticker-stream::-webkit-scrollbar {
-      display: none;
-    }
+    .ticker-bar::-webkit-scrollbar { display: none; }
 
-    .stream-item {
+    .t-item {
       display: flex;
       align-items: center;
       gap: 6px;
       background: rgba(255, 255, 255, 0.03);
-      padding: 4px 10px;
+      padding: 3px 10px;
       border-radius: 6px;
       border: 1px solid var(--border);
+      cursor: pointer;
     }
 
-    .stream-price {
-      font-weight: 700;
-      color: var(--accent-cyan);
-    }
+    .t-price { font-weight: 700; color: var(--accent-cyan); }
 
-    /* Main Container */
-    .dashboard-container {
-      max-width: 1440px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 16px 4% 50px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    /* Grid Layout: Top Row */
-    .top-overview-grid {
+    /* Main Trading Grid Architecture */
+    .trading-layout {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
+      grid-template-columns: 2.2fr 1fr 1fr;
+      gap: 14px;
+      padding: 14px 3%;
+      flex: 1;
     }
 
-    .summary-card {
-      background: var(--bg-panel);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 18px;
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-    }
-
-    .summary-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--accent-cyan);
-    }
-
-    .summary-card.card-wallet::before { background: var(--accent-purple); }
-    .summary-card.card-rate::before { background: var(--accent-green); }
-    .summary-card.card-gas::before { background: var(--accent-gold); }
-
-    .card-title {
-      font-size: 0.85rem;
-      color: #94a3b8;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-
-    .card-metric {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 4px;
-    }
-
-    .card-subtext {
-      font-size: 0.75rem;
-      color: var(--accent-green);
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    /* Mid Row: Chart + Orderbook */
-    .trading-workspace {
-      display: grid;
-      grid-template-columns: 2.2fr 1fr;
-      gap: 16px;
-    }
-
-    @media (max-width: 950px) {
-      .trading-workspace {
+    @media (max-width: 1080px) {
+      .trading-layout {
         grid-template-columns: 1fr;
       }
     }
 
-    .chart-panel {
-      background: var(--bg-panel);
+    .panel {
+      background: var(--panel-bg);
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 16px;
-      height: 480px;
       display: flex;
       flex-direction: column;
+      position: relative;
     }
 
-    .panel-head {
+    .panel-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -243,96 +184,154 @@
       font-weight: 700;
     }
 
+    /* Live TradingView Chart Frame */
     .chart-container {
-      flex: 1;
-      width: 100%;
+      height: 480px;
       border-radius: 10px;
       overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    /* Live Orderbook / Tape */
-    .orderbook-panel {
-      background: var(--bg-panel);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px;
+    .pair-selector {
       display: flex;
-      flex-direction: column;
-      height: 480px;
+      gap: 8px;
+      margin-bottom: 10px;
     }
 
-    .orderbook-rows {
-      flex: 1;
-      overflow-y: auto;
+    .pair-btn {
+      padding: 5px 12px;
+      background: #090e18;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: #94a3b8;
       font-size: 0.78rem;
-      scrollbar-width: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .pair-btn.active {
+      background: var(--accent-cyan);
+      color: #000;
+      border-color: var(--accent-cyan);
+    }
+
+    /* Orderbook Panel */
+    .orderbook-panel {
+      height: 520px;
     }
 
     .ob-header, .ob-row {
       display: flex;
       justify-content: space-between;
-      padding: 5px 0;
+      font-size: 0.76rem;
+      padding: 4px 0;
     }
 
     .ob-header {
       color: #64748b;
       border-bottom: 1px solid var(--border);
-      font-weight: 600;
       margin-bottom: 6px;
+      font-weight: 600;
     }
 
-    .ob-row.bid { color: var(--accent-green); }
     .ob-row.ask { color: var(--accent-red); }
+    .ob-row.bid { color: var(--accent-green); }
 
-    /* Market Explorer Table */
-    .market-explorer-panel {
-      background: var(--bg-panel);
+    .ob-spread {
+      text-align: center;
+      padding: 8px 0;
+      margin: 6px 0;
+      font-size: 0.85rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.02);
+      border-top: 1px dashed var(--border);
+      border-bottom: 1px dashed var(--border);
+      color: var(--accent-cyan);
+    }
+
+    /* Trade Execution & Transaction Box */
+    .trade-panel {
+      height: 520px;
+    }
+
+    .trade-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .side-btn {
+      flex: 1;
+      padding: 9px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+    }
+
+    .buy-side { background: var(--accent-green); color: #000; }
+    .sell-side { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); border: 1px solid var(--accent-red); }
+
+    .trade-form label {
+      display: block;
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-bottom: 5px;
+    }
+
+    .trade-input-wrap {
+      background: #090e18;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .trade-input-wrap input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 0.95rem;
+      width: 70%;
+    }
+
+    .trade-action-btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--accent-green);
+      color: #000;
+      transition: 0.2s;
+    }
+
+    .trade-action-btn:hover { opacity: 0.92; }
+
+    /* Bottom: Transaction History Table */
+    .history-panel {
+      margin: 0 3% 40px;
+      background: var(--panel-bg);
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 18px;
     }
 
-    .explorer-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .search-input-box {
-      position: relative;
-      min-width: 260px;
-    }
-
-    .search-input-box input {
-      width: 100%;
-      background: #060912;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 8px 12px 8px 36px;
-      color: #fff;
-      font-size: 0.85rem;
-      outline: none;
-    }
-
-    .search-input-box i {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #64748b;
-    }
-
-    .market-table-wrap {
-      overflow-x: auto;
-    }
-
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       text-align: left;
     }
 
@@ -340,351 +339,341 @@
       color: #64748b;
       padding: 10px;
       border-bottom: 1px solid var(--border);
-      font-weight: 600;
     }
 
     td {
-      padding: 12px 10px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
     }
 
-    tr:hover {
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .coin-badge {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .status-badge {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.72rem;
       font-weight: 700;
     }
 
-    .trade-mini-btn {
-      background: rgba(56, 189, 248, 0.15);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      color: var(--accent-cyan);
-      padding: 4px 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.75rem;
-      font-weight: 600;
-    }
-
-    .trade-mini-btn:hover {
-      background: var(--accent-cyan);
-      color: #000;
-    }
-
-    /* Modal / Wallet Simulation */
-    .wallet-status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.78rem;
-      background: rgba(255, 255, 255, 0.04);
-      padding: 4px 10px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-    }
+    .status-completed { background: rgba(34, 197, 94, 0.15); color: var(--accent-green); }
 
     footer {
       text-align: center;
-      padding: 22px;
+      padding: 20px;
       border-top: 1px solid var(--border);
       color: #64748b;
-      font-size: 0.82rem;
-      margin-top: auto;
+      font-size: 0.8rem;
     }
 
-    footer strong {
-      color: var(--accent-cyan);
-    }
+    footer strong { color: var(--accent-cyan); }
   </style>
 </head>
 <body>
 
-  <!-- Top Navigation -->
+  <!-- Top Header Navigation -->
   <header>
     <div class="brand-box">
-      <div class="logo-badge"><i class="fa-solid fa-cube"></i></div>
-      <div class="logo-text">EMON <span>TERMINAL</span></div>
+      <div class="logo-badge"><i class="fa-solid fa-chart-line"></i></div>
+      <div class="brand-title">EMON <span>EXCHANGE</span></div>
     </div>
 
-    <div class="header-actions">
-      <div class="wallet-status-badge mono">
-        <i class="fa-solid fa-circle text-green" style="color: var(--accent-green); font-size: 0.5rem;"></i>
-        <span id="selectedNetwork">Mainnet</span>
+    <div class="account-balance-bar">
+      <div class="wallet-box">
+        <span style="color:#64748b;">পোর্টফোলিও ব্যালেন্স:</span>
+        <span class="mono" id="userBalance" style="color:var(--accent-green); font-weight:700;">$15,450.00</span>
       </div>
-      <button class="connect-wallet-btn" id="walletBtn" onclick="toggleWallet()">
-        <i class="fa-solid fa-wallet"></i> <span id="walletText">Connect Web3</span>
+      <button class="wallet-btn" id="connectBtn" onclick="toggleWallet()">
+        <i class="fa-solid fa-wallet"></i> <span id="walletLabel">Connect Web3</span>
       </button>
     </div>
   </header>
 
-  <!-- Live Stream Bar -->
-  <div class="ticker-stream">
-    <div class="stream-item">
-      <span>USD/BDT:</span> <span class="stream-price" id="st-usd">৳১২১.৫০</span>
+  <!-- Live Market Ticker -->
+  <div class="ticker-bar">
+    <div class="t-item" onclick="switchTradingPair('BINANCE:BTCUSDT', 'BTC/USDT')">
+      <span>BTC/USDT:</span> <span class="t-price mono" id="tick-btc">লোড হচ্ছে...</span>
     </div>
-    <div class="stream-item">
-      <span>BTC/USDT:</span> <span class="stream-price" id="st-btc">লোড হচ্ছে...</span>
+    <div class="t-item" onclick="switchTradingPair('BINANCE:ETHUSDT', 'ETH/USDT')">
+      <span>ETH/USDT:</span> <span class="t-price mono" id="tick-eth">লোড হচ্ছে...</span>
     </div>
-    <div class="stream-item">
-      <span>ETH/USDT:</span> <span class="stream-price" id="st-eth">লোড হচ্ছে...</span>
+    <div class="t-item" onclick="switchTradingPair('BINANCE:SOLUSDT', 'SOL/USDT')">
+      <span>SOL/USDT:</span> <span class="t-price mono" id="tick-sol">লোড হচ্ছে...</span>
     </div>
-    <div class="stream-item">
-      <span>SOL/USDT:</span> <span class="stream-price" id="st-sol">লোড হচ্ছে...</span>
-    </div>
-    <div class="stream-item">
-      <span>BNB/USDT:</span> <span class="stream-price" id="st-bnb">লোড হচ্ছে...</span>
-    </div>
-    <div class="stream-item">
-      <span>DOGE/USDT:</span> <span class="stream-price" id="st-doge">লোড হচ্ছে...</span>
+    <div class="t-item">
+      <span>USD/BDT:</span> <span class="t-price mono" id="tick-usd">৳১২১.৮০</span>
     </div>
   </div>
 
-  <div class="dashboard-container">
-
-    <!-- Top Metric Cards -->
-    <div class="top-overview-grid">
-      <!-- Card 1: Live Portfolio / Wallet Watch -->
-      <div class="summary-card card-wallet">
-        <div class="card-title">
-          <span>Web3 Vault Balance</span>
-          <i class="fa-solid fa-shield-halved" style="color: var(--accent-purple);"></i>
+  <!-- Main Trading Workspace Grid -->
+  <div class="trading-layout">
+    
+    <!-- 1. Technical Chart Screen -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="pair-selector">
+          <button class="pair-btn active" onclick="switchTradingPair('BINANCE:BTCUSDT', 'BTC/USDT', this)">BTC/USDT</button>
+          <button class="pair-btn" onclick="switchTradingPair('BINANCE:ETHUSDT', 'ETH/USDT', this)">ETH/USDT</button>
+          <button class="pair-btn" onclick="switchTradingPair('BINANCE:SOLUSDT', 'SOL/USDT', this)">SOL/USDT</button>
         </div>
-        <div class="card-metric" id="vaultTotal">$48,250.80</div>
-        <div class="card-subtext">
-          <i class="fa-solid fa-arrow-trend-up"></i> +4.2% গত ২৪ ঘণ্টায়
-        </div>
+        <span class="mono" style="font-size:0.8rem; color:var(--accent-cyan);"><i class="fa-solid fa-signal"></i> লাইভ ফিড</span>
       </div>
-
-      <!-- Card 2: USD - BDT Dollar Rate -->
-      <div class="summary-card card-rate">
-        <div class="card-title">
-          <span>লাইভ ডলার এক্সচেঞ্জ (USD/BDT)</span>
-          <i class="fa-solid fa-dollar-sign" style="color: var(--accent-green);"></i>
-        </div>
-        <div class="card-metric" id="usdCardRate">৳১২১.৫০</div>
-        <div class="card-subtext">
-          <i class="fa-solid fa-bolt"></i> রিয়েল-টাইম ব্যাংক রেট ইনডেক্স
-        </div>
-      </div>
-
-      <!-- Card 3: Gas & Market Dominance -->
-      <div class="summary-card card-gas">
-        <div class="card-title">
-          <span>BTC মার্কেট ডমিন্যান্স & Gas</span>
-          <i class="fa-solid fa-gas-pump" style="color: var(--accent-gold);"></i>
-        </div>
-        <div class="card-metric">58.4% <span style="font-size: 0.9rem; font-weight: 500; color: #94a3b8;">/ 14 Gwei</span></div>
-        <div class="card-subtext" style="color: var(--accent-cyan);">
-          <i class="fa-solid fa-check"></i> নেটওয়ার্ক ফি স্বাভাবিক
-        </div>
+      
+      <div class="chart-container">
+        <iframe 
+          id="tvChartFrame"
+          src="https://s.tradingview.com/widgetembed/?symbol=BINANCE%3ABTCUSDT&interval=15&theme=dark&style=1&timezone=Asia%2FDhaka&locale=en" 
+          style="width: 100%; height: 100%; border: none;">
+        </iframe>
       </div>
     </div>
 
-    <!-- Middle Workspace: TradingView Chart + Live Orderbook -->
-    <div class="trading-workspace">
-      <!-- Chart Frame -->
-      <div class="chart-panel">
-        <div class="panel-head">
-          <span><i class="fa-solid fa-chart-candlestick" style="color: var(--accent-cyan);"></i> লাইভ টেকনিক্যাল চার্ট (BTC/USDT)</span>
-          <span class="mono" style="font-size: 0.75rem; color: #64748b;">Powered by TradingView</span>
-        </div>
-        <div class="chart-container">
-          <iframe 
-            src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_76214&symbol=BINANCE%3ABTCUSDT&interval=15&hidesidetoolbar=0&symboledit=1&saveimage=1&toolbarbg=f1f3f6&studies=%5B%5D&theme=dark&style=1&timezone=Asia%2FDhaka&studies_overrides=%7%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=en" 
-            style="width: 100%; height: 100%; border: none;">
-          </iframe>
-        </div>
+    <!-- 2. Live Orderbook Engine -->
+    <div class="panel orderbook-panel">
+      <div class="panel-header">
+        <span><i class="fa-solid fa-layer-group" style="color:var(--accent-purple);"></i> লাইভ অর্ডারবুক</span>
+        <span class="mono" style="font-size:0.75rem; color:var(--accent-green);">Depth: Realtime</span>
       </div>
 
-      <!-- Live Orderbook Tape -->
-      <div class="orderbook-panel">
-        <div class="panel-head">
-          <span><i class="fa-solid fa-layer-group" style="color: var(--accent-purple);"></i> লাইভ অর্ডারবুক</span>
-          <span class="mono" style="font-size: 0.75rem; color: var(--accent-green);">Depth: Live</span>
-        </div>
-        <div class="ob-header mono">
-          <span>প্রাইস (USDT)</span>
-          <span>সাইজ</span>
-          <span>মোট</span>
-        </div>
-        <div class="orderbook-rows mono" id="orderbookBody">
-          <!-- Populated by JS -->
-        </div>
+      <div class="ob-header mono">
+        <span>প্রাইস (USDT)</span>
+        <span>সাইজ</span>
+        <span>টোটাল</span>
+      </div>
+
+      <div id="obBody" class="mono" style="overflow-y:auto; flex:1;">
+        <!-- Javascript dynamic render -->
       </div>
     </div>
 
-    <!-- Bottom Market Explorer: 1000+ Pairs List Engine -->
-    <div class="market-explorer-panel">
-      <div class="explorer-bar">
-        <div>
-          <h3 style="font-size: 1.1rem; font-weight: 700;">মার্কেট পেয়ার ড্যাশবোর্ড</h3>
-          <p style="color: #64748b; font-size: 0.8rem;">রিয়েল-টাইম বাইন্যান্স লাইভ প্রাইস ডাটাবেজ</p>
-        </div>
-        <div class="search-input-box">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="text" id="tokenSearch" placeholder="যেকোনো কয়েন খুঁজুন (BTC, ETH, SOL...)" onkeyup="filterMarketTokens()" />
-        </div>
+    <!-- 3. Trade Execution Panel -->
+    <div class="panel trade-panel">
+      <div class="panel-header">
+        <span><i class="fa-solid fa-bolt" style="color:var(--accent-gold);"></i> স্পট ট্রেড অর্ডার</span>
       </div>
 
-      <div class="market-table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>অ্যাসেট</th>
-              <th>বর্তমান মূল্য</th>
-              <th>২৪ ঘণ্টার পরিবর্তন</th>
-              <th>মার্কেট স্টেটাস</th>
-              <th>অ্যাকশন</th>
-            </tr>
-          </thead>
-          <tbody id="tokenTableBody">
-            <!-- Dynamic rows will load here -->
-          </tbody>
-        </table>
+      <div class="trade-tabs">
+        <button class="side-btn buy-side" id="buyBtn" onclick="selectTradeSide('BUY')">BUY / LONG</button>
+        <button class="side-btn sell-side" id="sellBtn" onclick="selectTradeSide('SELL')">SELL / SHORT</button>
+      </div>
+
+      <div class="trade-form">
+        <label>অর্ডার প্রাইস (USDT)</label>
+        <div class="trade-input-wrap">
+          <input type="number" id="orderPrice" class="mono" value="84250.00" />
+          <span style="font-size:0.8rem; color:#64748b;">USDT</span>
+        </div>
+
+        <label>পরিমাণ (Amount)</label>
+        <div class="trade-input-wrap">
+          <input type="number" id="orderAmount" class="mono" placeholder="0.05" value="0.05" oninput="calculateTotal()" />
+          <span id="currentAssetLabel" style="font-size:0.8rem; color:#64748b;">BTC</span>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:15px; color:#94a3b8;">
+          <span>মোট খরচ:</span>
+          <span class="mono" id="tradeTotalVal" style="color:#fff; font-weight:700;">$4,212.50</span>
+        </div>
+
+        <button class="trade-action-btn" id="executeOrderBtn" onclick="executeTradeOrder()">
+          <i class="fa-solid fa-arrow-right-arrow-left"></i> অর্ডার এক্সিকিউট করুন
+        </button>
       </div>
     </div>
 
+  </div>
+
+  <!-- Bottom: Order & Transaction History -->
+  <div class="history-panel">
+    <div class="panel-header">
+      <span><i class="fa-solid fa-clock-rotate-left" style="color:var(--accent-cyan);"></i> লেনদেন ও ট্রেড হিস্ট্রি</span>
+      <span class="mono" style="font-size:0.75rem; color:#64748b;">হালনাগাদ রেকর্ড</span>
+    </div>
+
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>সময়</th>
+            <th>টাইপ</th>
+            <th>পেয়ার</th>
+            <th>মূল্য</th>
+            <th>পরিমাণ</th>
+            <th>স্ট্যাটাস</th>
+          </tr>
+        </thead>
+        <tbody id="txHistoryBody" class="mono">
+          <tr>
+            <td>10:14:20 PM</td>
+            <td style="color:var(--accent-green); font-weight:700;">BUY</td>
+            <td>BTC/USDT</td>
+            <td>$84,120.00</td>
+            <td>0.025 BTC</td>
+            <td><span class="status-badge status-completed">COMPLETED</span></td>
+          </tr>
+          <tr>
+            <td>09:42:15 PM</td>
+            <td style="color:var(--accent-red); font-weight:700;">SELL</td>
+            <td>ETH/USDT</td>
+            <td>$2,660.50</td>
+            <td>1.200 ETH</td>
+            <td><span class="status-badge status-completed">COMPLETED</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <!-- Footer -->
   <footer>
-    <p>Engineered with High-Frequency Architecture &bull; <strong>EMON OS Web3 Terminal</strong> &copy; 2026</p>
+    <p>Architecture Designed by <strong>Developer Emon Khan</strong> &bull; EMON PRO TRADER &copy; 2026</p>
   </footer>
 
   <script>
-    // 1. Live Binance API Market Pairs Fetcher
-    const primarySymbols = ["BTCUSDT", "ETHUSDT", "SOLUSDT", "BNBUSDT", "DOGEUSDT", "ADAUSDT", "XRPUSDT", "AVAXUSDT", "LINKUSDT", "NEARUSDT"];
-    let marketData = [];
+    let currentBalance = 15450.00;
+    let activeSide = 'BUY';
+    let currentPairName = 'BTC/USDT';
+    let liveMarketPrice = 84250.00;
 
-    async function loadLiveMarketData() {
-      try {
-        const res = await fetch('https://api.binance.com/api/v3/ticker/24hr');
-        const allData = await res.json();
-
-        marketData = allData.filter(item => primarySymbols.includes(item.symbol));
-        renderTable(marketData);
-        updateTickers(marketData);
-      } catch (err) {
-        console.error("Market fetch failed", err);
+    // 1. TradingView Pair Switcher
+    function switchTradingPair(symbol, pairText, elem) {
+      document.getElementById('tvChartFrame').src = `https://s.tradingview.com/widgetembed/?symbol=${symbol}&interval=15&theme=dark&style=1&timezone=Asia%2FDhaka&locale=en`;
+      currentPairName = pairText;
+      document.getElementById('currentAssetLabel').innerText = pairText.split('/')[0];
+      
+      if (elem) {
+        document.querySelectorAll('.pair-btn').forEach(btn => btn.classList.remove('active'));
+        elem.classList.add('active');
       }
     }
 
-    function renderTable(tokens) {
-      const tbody = document.getElementById('tokenTableBody');
-      tbody.innerHTML = '';
+    // 2. Buy/Sell Toggle
+    function selectTradeSide(side) {
+      activeSide = side;
+      const buyBtn = document.getElementById('buyBtn');
+      const sellBtn = document.getElementById('sellBtn');
+      const execBtn = document.getElementById('executeOrderBtn');
 
-      tokens.forEach(t => {
-        const price = parseFloat(t.lastPrice).toLocaleString('en-US', { minimumFractionDigits: 2 });
-        const change = parseFloat(t.priceChangePercent).toFixed(2);
-        const isUp = change >= 0;
-
-        const row = document.createElement('tr');
-        row.setAttribute('data-symbol', t.symbol.toLowerCase());
-        row.innerHTML = `
-          <td>
-            <div class="coin-badge">
-              <i class="fa-solid fa-coins" style="color: var(--accent-cyan);"></i>
-              <div>
-                <div>${t.symbol.replace('USDT', '')}</div>
-                <div style="font-size:0.7rem; color:#64748b;">${t.symbol}</div>
-              </div>
-            </div>
-          </td>
-          <td class="mono" style="font-weight: 700;">$${price}</td>
-          <td class="mono ${isUp ? 'positive' : 'negative'}">
-            <i class="fa-solid fa-caret-${isUp ? 'up' : 'down'}"></i> ${change}%
-          </td>
-          <td>
-            <span style="font-size:0.75rem; padding: 3px 8px; border-radius: 6px; background: ${isUp ? 'rgba(34, 197, 94, 0.1)' : 'rgba(239, 68, 68, 0.1)'}; color: ${isUp ? 'var(--accent-green)' : 'var(--accent-red)'}">
-              ${isUp ? 'Bullish' : 'Bearish'}
-            </span>
-          </td>
-          <td>
-            <button class="trade-mini-btn" onclick="alert('ট্রেড উইন্ডো সক্রিয়: ${t.symbol}')">Trade</button>
-          </td>
-        `;
-        tbody.appendChild(row);
-      });
+      if (side === 'BUY') {
+        buyBtn.style.background = 'var(--accent-green)';
+        buyBtn.style.color = '#000';
+        sellBtn.style.background = 'rgba(239, 68, 68, 0.2)';
+        sellBtn.style.color = 'var(--accent-red)';
+        execBtn.style.background = 'var(--accent-green)';
+        execBtn.innerText = 'BUY অর্ডার সাবমিট করুন';
+      } else {
+        sellBtn.style.background = 'var(--accent-red)';
+        sellBtn.style.color = '#fff';
+        buyBtn.style.background = 'rgba(34, 197, 94, 0.2)';
+        buyBtn.style.color = 'var(--accent-green)';
+        execBtn.style.background = 'var(--accent-red)';
+        execBtn.style.color = '#fff';
+        execBtn.innerText = 'SELL অর্ডার সাবমিট করুন';
+      }
     }
 
-    function updateTickers(tokens) {
-      tokens.forEach(t => {
-        const p = `$${parseFloat(t.lastPrice).toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
-        if (t.symbol === 'BTCUSDT') document.getElementById('st-btc').innerText = p;
-        if (t.symbol === 'ETHUSDT') document.getElementById('st-eth').innerText = p;
-        if (t.symbol === 'SOLUSDT') document.getElementById('st-sol').innerText = p;
-        if (t.symbol === 'BNBUSDT') document.getElementById('st-bnb').innerText = p;
-        if (t.symbol === 'DOGEUSDT') document.getElementById('st-doge').innerText = p;
-      });
+    function calculateTotal() {
+      const p = parseFloat(document.getElementById('orderPrice').value) || 0;
+      const a = parseFloat(document.getElementById('orderAmount').value) || 0;
+      document.getElementById('tradeTotalVal').innerText = `$${(p * a).toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
     }
 
-    function filterMarketTokens() {
-      const q = document.getElementById('tokenSearch').value.toLowerCase();
-      document.querySelectorAll('#tokenTableBody tr').forEach(row => {
-        const sym = row.getAttribute('data-symbol');
-        row.style.display = sym.includes(q) ? '' : 'none';
-      });
+    // 3. Trade Execution Simulation
+    function executeTradeOrder() {
+      const p = parseFloat(document.getElementById('orderPrice').value) || 0;
+      const a = parseFloat(document.getElementById('orderAmount').value) || 0;
+      const total = p * a;
+
+      if (total <= 0) return alert('অনুগ্রহ করে সঠিক পরিমাণ লিখুন!');
+
+      if (activeSide === 'BUY') {
+        if (total > currentBalance) return alert('অপর্যাপ্ত ব্যালেন্স!');
+        currentBalance -= total;
+      } else {
+        currentBalance += total;
+      }
+
+      document.getElementById('userBalance').innerText = `$${currentBalance.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+
+      // Append transaction to history
+      const tbody = document.getElementById('txHistoryBody');
+      const time = new Date().toLocaleTimeString('en-US');
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${time}</td>
+        <td style="color:${activeSide === 'BUY' ? 'var(--accent-green)' : 'var(--accent-red)'}; font-weight:700;">${activeSide}</td>
+        <td>${currentPairName}</td>
+        <td>$${p.toLocaleString('en-US')}</td>
+        <td>${a} ${currentPairName.split('/')[0]}</td>
+        <td><span class="status-badge status-completed">COMPLETED</span></td>
+      `;
+      tbody.prepend(tr);
+      alert(`অর্ডার সফল! ${activeSide} ${a} ${currentPairName.split('/')[0]} সম্পন্ন হয়েছে।`);
     }
 
-    // 2. Simulated High-Frequency Orderbook Tape
-    function generateOrderbook() {
-      const ob = document.getElementById('orderbookBody');
+    // 4. Live Orderbook Depth Generator
+    function renderOrderbook() {
+      const ob = document.getElementById('obBody');
       ob.innerHTML = '';
-      let basePrice = 84300;
 
-      // Asks (Sells)
-      for (let i = 4; i >= 1; i--) {
-        const p = (basePrice + i * 2.5).toFixed(2);
-        const amt = (Math.random() * 0.8 + 0.05).toFixed(4);
-        ob.innerHTML += `<div class="ob-row ask"><span>${p}</span><span>${amt}</span><span>${(p * amt).toFixed(0)}</span></div>`;
+      // Asks
+      for (let i = 5; i >= 1; i--) {
+        const price = (liveMarketPrice + i * 2.8).toFixed(2);
+        const size = (Math.random() * 0.9 + 0.05).toFixed(4);
+        ob.innerHTML += `<div class="ob-row ask"><span>${price}</span><span>${size}</span><span>${(price * size).toFixed(0)}</span></div>`;
       }
 
       // Middle Spread
-      ob.innerHTML += `<div style="text-align:center; padding: 4px 0; color: var(--accent-cyan); font-weight:700; border-top:1px dashed var(--border); border-bottom:1px dashed var(--border);">$${basePrice.toFixed(2)} Spread</div>`;
+      ob.innerHTML += `<div class="ob-spread">$${liveMarketPrice.toFixed(2)} &bull; মার্কেট প্রাইস</div>`;
 
-      // Bids (Buys)
-      for (let i = 1; i <= 4; i++) {
-        const p = (basePrice - i * 2.5).toFixed(2);
-        const amt = (Math.random() * 0.8 + 0.05).toFixed(4);
-        ob.innerHTML += `<div class="ob-row bid"><span>${p}</span><span>${amt}</span><span>${(p * amt).toFixed(0)}</span></div>`;
+      // Bids
+      for (let i = 1; i <= 5; i++) {
+        const price = (liveMarketPrice - i * 2.8).toFixed(2);
+        const size = (Math.random() * 0.9 + 0.05).toFixed(4);
+        ob.innerHTML += `<div class="ob-row bid"><span>${price}</span><span>${size}</span><span>${(price * size).toFixed(0)}</span></div>`;
       }
     }
 
-    // 3. Web3 Wallet Simulation
+    // 5. Binance Live Prices
+    async function fetchLiveTicker() {
+      try {
+        const res = await fetch('https://api.binance.com/api/v3/ticker/price?symbols=["BTCUSDT","ETHUSDT","SOLUSDT"]');
+        const data = await res.json();
+        data.forEach(item => {
+          const val = `$${parseFloat(item.price).toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+          if (item.symbol === 'BTCUSDT') {
+            document.getElementById('tick-btc').innerText = val;
+            liveMarketPrice = parseFloat(item.price);
+            document.getElementById('orderPrice').value = liveMarketPrice.toFixed(2);
+            calculateTotal();
+          }
+          if (item.symbol === 'ETHUSDT') document.getElementById('tick-eth').innerText = val;
+          if (item.symbol === 'SOLUSDT') document.getElementById('tick-sol').innerText = val;
+        });
+      } catch (err) {}
+    }
+
+    // 6. Web3 Wallet Toggle
     let isConnected = false;
     function toggleWallet() {
-      const btn = document.getElementById('walletBtn');
-      const text = document.getElementById('walletText');
+      const btn = document.getElementById('connectBtn');
+      const label = document.getElementById('walletLabel');
       if (!isConnected) {
-        text.innerText = "0x71F...89C4";
-        btn.style.background = "rgba(34, 197, 94, 0.2)";
-        btn.style.border = "1px solid var(--accent-green)";
+        label.innerText = '0x8F9...E21A';
+        btn.style.background = 'rgba(34, 197, 94, 0.2)';
+        btn.style.border = '1px solid var(--accent-green)';
         isConnected = true;
       } else {
-        text.innerText = "Connect Web3";
-        btn.style.background = "linear-gradient(90deg, #0284c7, #9333ea)";
-        btn.style.border = "none";
+        label.innerText = 'Connect Web3';
+        btn.style.background = 'linear-gradient(90deg, #0284c7, #9333ea)';
+        btn.style.border = 'none';
         isConnected = false;
       }
     }
 
-    // 4. Live Dollar Tick Simulation
-    let usd = 121.50;
-    setInterval(() => {
-      usd = +(usd + (Math.random() * 0.08 - 0.04)).toFixed(2);
-      document.getElementById('st-usd').innerText = `৳${usd}`;
-      document.getElementById('usdCardRate').innerText = `৳${usd}`;
-    }, 4000);
-
-    // Init & Polling
-    loadLiveMarketData();
-    generateOrderbook();
-    setInterval(loadLiveMarketData, 5000);
-    setInterval(generateOrderbook, 1500);
+    // Initialize
+    fetchLiveTicker();
+    renderOrderbook();
+    calculateTotal();
+    setInterval(fetchLiveTicker, 4000);
+    setInterval(renderOrderbook, 1500);
   </script>
 </body>
 </html>
