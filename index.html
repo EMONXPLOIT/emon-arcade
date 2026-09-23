@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>ROOT-OS | Ultimate Dev & Creator Workstation</title>
+  <title>EMON OS | Pro Cyber Station & Live Market</title>
   
-  <!-- Google Fonts & Font Awesome Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  
+
   <style>
     :root {
-      --bg-dark: #07090e;
+      --bg-dark: #070a12;
       --card-bg: rgba(15, 23, 42, 0.75);
       --accent-cyan: #38bdf8;
       --accent-purple: #c084fc;
       --accent-green: #22c55e;
-      --accent-orange: #f59e0b;
+      --accent-red: #ef4444;
+      --accent-yellow: #f59e0b;
       --border-color: rgba(255, 255, 255, 0.08);
     }
 
@@ -44,13 +45,13 @@
         radial-gradient(circle at 90% 80%, rgba(192, 132, 252, 0.08) 0%, transparent 40%);
     }
 
-    /* Top Cyber Navigation */
+    /* Navbar */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 6%;
-      background: rgba(11, 15, 25, 0.9);
+      padding: 14px 6%;
+      background: rgba(11, 15, 25, 0.95);
       backdrop-filter: blur(15px);
       border-bottom: 1px solid var(--border-color);
       position: sticky;
@@ -65,22 +66,22 @@
     }
 
     .brand-icon {
-      width: 32px;
-      height: 32px;
+      width: 35px;
+      height: 35px;
       background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-      border-radius: 8px;
+      border-radius: 9px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #07090e;
+      color: #070a12;
       font-weight: 800;
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.45);
     }
 
     .brand-text {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: 800;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
       color: var(--accent-cyan);
     }
 
@@ -92,10 +93,10 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: #94a3b8;
       background: rgba(255, 255, 255, 0.04);
-      padding: 6px 14px;
+      padding: 5px 12px;
       border-radius: 20px;
       border: 1px solid var(--border-color);
     }
@@ -106,22 +107,22 @@
       background: var(--accent-green);
       border-radius: 50%;
       box-shadow: 0 0 8px var(--accent-green);
-      animation: pulse 1.5s infinite;
+      animation: pulse 1.4s infinite;
     }
 
     @keyframes pulse {
-      0% { opacity: 0.4; }
+      0% { opacity: 0.3; }
       50% { opacity: 1; }
-      100% { opacity: 0.4; }
+      100% { opacity: 0.3; }
     }
 
-    /* Live Crypto Marquee Ticker */
+    /* Live Dollar & Crypto Stream Marquee */
     .ticker-bar {
-      background: rgba(15, 23, 42, 0.6);
+      background: rgba(15, 23, 42, 0.65);
       border-bottom: 1px solid var(--border-color);
       padding: 8px 6%;
       display: flex;
-      gap: 20px;
+      gap: 16px;
       overflow-x: auto;
       white-space: nowrap;
       font-size: 0.8rem;
@@ -145,26 +146,27 @@
     .crypto-price {
       font-weight: 700;
       color: var(--accent-cyan);
+      transition: color 0.3s;
     }
 
-    /* Tab Menu */
+    /* Quick Tabs */
     .tab-navigation {
       display: flex;
       justify-content: center;
       gap: 10px;
-      padding: 24px 20px 0;
+      padding: 22px 20px 0;
       flex-wrap: wrap;
     }
 
     .tab-btn {
-      padding: 10px 22px;
+      padding: 9px 20px;
       background: var(--card-bg);
       border: 1px solid var(--border-color);
       color: #94a3b8;
       border-radius: 12px;
       cursor: pointer;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.86rem;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -175,14 +177,13 @@
       color: #fff;
       background: rgba(56, 189, 248, 0.15);
       border-color: var(--accent-cyan);
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.25);
     }
 
-    /* Layout Containers */
     .workspace-container {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 24px 20px 60px;
+      padding: 20px 20px 60px;
       width: 100%;
     }
 
@@ -200,7 +201,105 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* MODULE 1: Cyberpunk Interactive Terminal */
+    /* Crypto & Dollar Card Layout */
+    .crypto-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-bottom: 25px;
+    }
+
+    .coin-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .coin-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .coin-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--accent-cyan);
+    }
+
+    .coin-card.card-usd::before { background: var(--accent-green); }
+    .coin-card.card-gold::before { background: var(--accent-yellow); }
+
+    .coin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .coin-symbol {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .coin-val {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+      transition: all 0.3s;
+    }
+
+    .coin-change {
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .positive { color: var(--accent-green); }
+    .negative { color: var(--accent-red); }
+
+    .flash-up { color: #4ade80 !important; transform: scale(1.02); }
+    .flash-down { color: #f87171 !important; transform: scale(1.02); }
+
+    /* Currency Converter Box */
+    .converter-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 22px;
+      margin-top: 15px;
+    }
+
+    .converter-inputs {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .converter-inputs input {
+      flex: 1;
+      min-width: 140px;
+      background: #090d16;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 12px;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    /* Terminal */
     .terminal-card {
       background: #030712;
       border-radius: 16px;
@@ -218,16 +317,8 @@
       border-bottom: 1px solid var(--border-color);
     }
 
-    .terminal-dots {
-      display: flex;
-      gap: 7px;
-    }
-
-    .dot {
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-    }
+    .terminal-dots { display: flex; gap: 7px; }
+    .dot { width: 11px; height: 11px; border-radius: 50%; }
     .dot-red { background: #ef4444; }
     .dot-yellow { background: #eab308; }
     .dot-green { background: #22c55e; }
@@ -237,7 +328,7 @@
       min-height: 380px;
       max-height: 480px;
       overflow-y: auto;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       line-height: 1.6;
       color: #38bdf8;
     }
@@ -269,26 +360,20 @@
       caret-color: var(--accent-cyan);
     }
 
-    /* MODULE 2: Developer Utility Box */
-    .panel-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 20px;
-    }
-
+    /* Utility Tools */
     .tool-card {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 16px;
-      padding: 22px;
-      backdrop-filter: blur(10px);
+      padding: 20px;
+      margin-bottom: 20px;
     }
 
     .tool-title {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: var(--accent-cyan);
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -303,7 +388,6 @@
       color: #f1f5f9;
       font-size: 0.88rem;
       outline: none;
-      transition: border-color 0.2s;
     }
 
     textarea:focus, input[type="text"]:focus {
@@ -313,126 +397,30 @@
     .action-btn {
       width: 100%;
       padding: 11px;
-      margin-top: 12px;
+      margin-top: 10px;
       background: linear-gradient(90deg, var(--accent-cyan), #6366f1);
-      color: #07090e;
+      color: #070a12;
       border: none;
       border-radius: 10px;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition: opacity 0.2s;
     }
-
-    .action-btn:hover {
-      opacity: 0.92;
-    }
-
-    /* MODULE 3: Creator Studio Engine */
-    .creator-panel {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 18px;
-      padding: 26px;
-      backdrop-filter: blur(10px);
-    }
-
-    .creator-output-box {
-      margin-top: 20px;
-      background: #07090e;
-      border-radius: 12px;
-      padding: 18px;
-      border: 1px dashed rgba(192, 132, 252, 0.4);
-      display: none;
-    }
-
-    .badge-pill {
-      display: inline-block;
-      padding: 3px 9px;
-      background: rgba(192, 132, 252, 0.15);
-      border: 1px solid rgba(192, 132, 252, 0.3);
-      color: var(--accent-purple);
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    /* MODULE 4: Live Crypto Tracker Cards */
-    .crypto-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-    }
-
-    .coin-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .coin-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--accent-cyan);
-    }
-
-    .coin-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-
-    .coin-symbol {
-      font-size: 1.1rem;
-      font-weight: 800;
-    }
-
-    .coin-val {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 6px;
-    }
-
-    .coin-change {
-      font-size: 0.82rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .positive { color: var(--accent-green); }
-    .negative { color: #ef4444; }
 
     footer {
       text-align: center;
-      padding: 22px;
+      padding: 20px;
       border-top: 1px solid var(--border-color);
       color: #64748b;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       margin-top: auto;
     }
 
-    footer strong {
-      color: var(--accent-cyan);
-    }
+    footer strong { color: var(--accent-cyan); }
   </style>
 </head>
 <body>
@@ -440,17 +428,21 @@
   <!-- Top Cyber Bar -->
   <header>
     <div class="brand">
-      <div class="brand-icon"><i class="fa-solid fa-terminal"></i></div>
-      <div class="brand-text">ROOT<span>X</span></div>
+      <div class="brand-icon"><i class="fa-solid fa-code"></i></div>
+      <!-- ব্র্যান্ড নেম EMON OS -->
+      <div class="brand-text">EMON <span>OS</span></div>
     </div>
     <div class="sys-status">
       <div class="pulse-dot"></div>
-      <span>Core Active &bull; 2026 Ready</span>
+      <span>Core Active &bull; 2026 Engine</span>
     </div>
   </header>
 
-  <!-- Live Market Ticker -->
+  <!-- Live Market Stream Ticker -->
   <div class="ticker-bar" id="tickerBar">
+    <div class="crypto-item">
+      <span>USD/BDT:</span> <span class="crypto-price" id="t-usd">৳১২১.৫০</span>
+    </div>
     <div class="crypto-item">
       <span>BTC/USDT:</span> <span class="crypto-price" id="t-btc">লোড হচ্ছে...</span>
     </div>
@@ -467,7 +459,10 @@
 
   <!-- Navigation Tabs -->
   <div class="tab-navigation">
-    <button class="tab-btn active" onclick="switchTab('terminal', event)">
+    <button class="tab-btn active" onclick="switchTab('crypto', event)">
+      <i class="fa-solid fa-chart-line"></i> লাইভ মার্কেট ও ডলার রেট
+    </button>
+    <button class="tab-btn" onclick="switchTab('terminal', event)">
       <i class="fa-solid fa-terminal"></i> টার্মিনাল পোর্টফোলিও
     </button>
     <button class="tab-btn" onclick="switchTab('devtools', event)">
@@ -476,15 +471,88 @@
     <button class="tab-btn" onclick="switchTab('creator', event)">
       <i class="fa-solid fa-wand-magic-sparkles"></i> ক্রিয়েটর স্টুডিও
     </button>
-    <button class="tab-btn" onclick="switchTab('crypto', event)">
-      <i class="fa-solid fa-chart-line"></i> লাইভ মার্কেট ডাটা
-    </button>
   </div>
 
   <div class="workspace-container">
 
-    <!-- TAB 1: CYBERPUNK TERMINAL -->
-    <div id="tab-terminal" class="tab-content active">
+    <!-- TAB 1: CRYPTO & DOLLAR MARKET -->
+    <div id="tab-crypto" class="tab-content active">
+      <div class="crypto-grid">
+        <!-- Live Dollar Card -->
+        <div class="coin-card card-usd">
+          <div class="coin-header">
+            <span class="coin-symbol">মার্কিন ডলার (USD / BDT)</span>
+            <i class="fa-solid fa-dollar-sign fa-lg" style="color: var(--accent-green);"></i>
+          </div>
+          <div class="coin-val" id="usdVal">৳১২১.৫০</div>
+          <div class="coin-change positive"><i class="fa-solid fa-arrows-rotate"></i> লাইভ রিয়েল-টাইম মার্কেট</div>
+        </div>
+
+        <!-- Gold / Asset Card -->
+        <div class="coin-card card-gold">
+          <div class="coin-header">
+            <span class="coin-symbol">গোল্ড প্রাইস (২২ ক্যারেট/ভরি)</span>
+            <i class="fa-solid fa-coins fa-lg" style="color: var(--accent-yellow);"></i>
+          </div>
+          <div class="coin-val" id="goldVal">৳১,৩৮,৬০০</div>
+          <div class="coin-change positive"><i class="fa-solid fa-shield-halved"></i> গোল্ড মার্কেট ইনডেক্স</div>
+        </div>
+
+        <!-- Bitcoin -->
+        <div class="coin-card">
+          <div class="coin-header">
+            <span class="coin-symbol">Bitcoin (BTC)</span>
+            <i class="fa-brands fa-bitcoin fa-lg" style="color: var(--accent-yellow);"></i>
+          </div>
+          <div class="coin-val" id="btcVal">---</div>
+          <div class="coin-change positive" id="btcStat"><i class="fa-solid fa-arrow-trend-up"></i> লাইভ স্ট্রিম</div>
+        </div>
+
+        <!-- Ethereum -->
+        <div class="coin-card">
+          <div class="coin-header">
+            <span class="coin-symbol">Ethereum (ETH)</span>
+            <i class="fa-brands fa-ethereum fa-lg" style="color: #6366f1;"></i>
+          </div>
+          <div class="coin-val" id="ethVal">---</div>
+          <div class="coin-change positive" id="ethStat"><i class="fa-solid fa-arrow-trend-up"></i> লাইভ স্ট্রিম</div>
+        </div>
+
+        <!-- Solana -->
+        <div class="coin-card">
+          <div class="coin-header">
+            <span class="coin-symbol">Solana (SOL)</span>
+            <i class="fa-solid fa-bolt fa-lg" style="color: #14f195;"></i>
+          </div>
+          <div class="coin-val" id="solVal">---</div>
+          <div class="coin-change positive" id="solStat"><i class="fa-solid fa-arrow-trend-up"></i> লাইভ স্ট্রিম</div>
+        </div>
+
+        <!-- BNB -->
+        <div class="coin-card">
+          <div class="coin-header">
+            <span class="coin-symbol">Binance Coin (BNB)</span>
+            <i class="fa-solid fa-coins fa-lg" style="color: #facc15;"></i>
+          </div>
+          <div class="coin-val" id="bnbVal">---</div>
+          <div class="coin-change positive" id="bnbStat"><i class="fa-solid fa-arrow-trend-up"></i> লাইভ স্ট্রিম</div>
+        </div>
+      </div>
+
+      <!-- Quick Currency Converter -->
+      <div class="converter-box">
+        <div class="tool-title">
+          <i class="fa-solid fa-calculator"></i> ইনস্ট্যান্ট ডলার &harr; টাকা কনভার্টার
+        </div>
+        <div class="converter-inputs">
+          <input type="number" id="usdAmount" placeholder="USD ($) পরিমাণ..." oninput="convertCurrency()" value="10" />
+          <input type="text" id="bdtResult" placeholder="BDT (৳) হিসাব..." readonly />
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: TERMINAL PORTFOLIO -->
+    <div id="tab-terminal" class="tab-content">
       <div class="terminal-card">
         <div class="terminal-header">
           <div class="terminal-dots">
@@ -492,118 +560,52 @@
             <div class="dot dot-yellow"></div>
             <div class="dot dot-green"></div>
           </div>
-          <span style="font-size: 0.8rem; color: #64748b;">root@workstation:~</span>
+          <span style="font-size: 0.8rem; color: #64748b;">emon@workstation:~</span>
         </div>
         <div class="terminal-body" id="termBody" onclick="focusTerminal()">
           <div class="terminal-output" id="termOutput">
 =====================================================
-⚡ স্বাগতম ROOTX সাইবার টার্মিনাল সিস্টেমে!
+⚡ স্বাগতম EMON OS সাইবার টার্মিনাল সিস্টেমে!
 কমান্ডের তালিকা দেখতে টাইপ করুন: 'help'
 =====================================================
           </div>
           <div class="terminal-prompt-line">
-            <span class="prompt-label">visitor@rootx:~$</span>
-            <input type="text" id="termInput" class="terminal-input" autocomplete="off" autofocus />
+            <span class="prompt-label">visitor@emon-os:~$</span>
+            <input type="text" id="termInput" class="terminal-input" autocomplete="off" />
           </div>
         </div>
       </div>
     </div>
 
-    <!-- TAB 2: DEVELOPER & AUTOMATION TOOLS -->
+    <!-- TAB 3: DEV & AUTOMATION TOOLS -->
     <div id="tab-devtools" class="tab-content">
-      <div class="panel-grid">
-        <!-- JSON Cleaner & Formatter -->
-        <div class="tool-card">
-          <div class="tool-title">
-            <i class="fa-solid fa-brackets-curly"></i> JSON প্রিটিফাই ও ভ্যালিডেটর
-          </div>
-          <textarea id="jsonInput" rows="6" placeholder='{"status":"ok","code":200}'></textarea>
-          <button class="action-btn" onclick="formatJSON()">
-            <i class="fa-solid fa-bolt"></i> ফর্ম্যাট ও ভ্যালিডেট
-          </button>
-          <p id="jsonResult" style="font-size: 0.8rem; margin-top: 8px;"></p>
-        </div>
+      <div class="tool-card">
+        <div class="tool-title"><i class="fa-solid fa-brackets-curly"></i> JSON প্রিটিফাই ও ভ্যালিডেটর</div>
+        <textarea id="jsonInput" rows="5" placeholder='{"name":"Emon","role":"Developer"}'></textarea>
+        <button class="action-btn" onclick="formatJSON()"><i class="fa-solid fa-bolt"></i> ফর্ম্যাট ও ভ্যালিডেট</button>
+        <p id="jsonResult" style="font-size: 0.8rem; margin-top: 8px;"></p>
+      </div>
 
-        <!-- Python RegEx Tester -->
-        <div class="tool-card">
-          <div class="tool-title">
-            <i class="fa-brands fa-python"></i> পাইথন রেগুলার এক্সপ্রেশন টেস্টার
-          </div>
-          <input type="text" id="regexPattern" placeholder="প্যাটার্ন লিখুন (যেমন: [0-9]+)" style="margin-bottom: 8px;" />
-          <textarea id="regexText" rows="4" placeholder="টেস্টিং টেক্সট লিখুন..."></textarea>
-          <button class="action-btn" onclick="testRegEx()">
-            <i class="fa-solid fa-magnifying-glass"></i> ম্যাচিং টেস্ট করুন
-          </button>
-          <p id="regexResult" style="font-size: 0.85rem; margin-top: 8px; color: var(--accent-cyan);"></p>
-        </div>
+      <div class="tool-card">
+        <div class="tool-title"><i class="fa-brands fa-python"></i> পাইথন রেগুলার এক্সপ্রেশন টেস্টার</div>
+        <input type="text" id="regexPattern" placeholder="প্যাটার্ন লিখুন (যেমন: [0-9]+)" style="margin-bottom: 8px;" />
+        <textarea id="regexText" rows="3" placeholder="টেস্টিং টেক্সট লিখুন..."></textarea>
+        <button class="action-btn" onclick="testRegEx()"><i class="fa-solid fa-magnifying-glass"></i> ম্যাচিং টেস্ট করুন</button>
+        <p id="regexResult" style="font-size: 0.85rem; margin-top: 8px; color: var(--accent-cyan);"></p>
       </div>
     </div>
 
-    <!-- TAB 3: CREATOR STUDIO ENGINE -->
+    <!-- TAB 4: CREATOR STUDIO -->
     <div id="tab-creator" class="tab-content">
-      <div class="creator-panel">
-        <div class="tool-title">
-          <i class="fa-solid fa-video"></i> এআই ভাইরাল স্ক্রিপ্ট ও হুক জেনারেটর
-        </div>
-        <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 16px;">
-          আপনার ভিডিওর মূল টপিক লিখুন। সিস্টেম স্বয়ংক্রিয়ভাবে একটি আকর্ষণীয় ওপেনিং হুক, অ্যানিমেশন স্ক্রিপ্ট ধারণা এবং হ্যাশট্যাগ তৈরি করে দেবে।
-        </p>
-        
-        <input type="text" id="creatorTopic" placeholder="যেমন: AI দিয়ে ভবিষ্যৎ রোবট তৈরি, অনলাইন সিকিউরিটি টিপস..." />
-        <button class="action-btn" onclick="generateViralPack()" style="margin-top: 14px;">
-          <i class="fa-solid fa-wand-magic-sparkles"></i> ভাইরাল প্যাক তৈরি করুন
-        </button>
+      <div class="tool-card">
+        <div class="tool-title"><i class="fa-solid fa-video"></i> এআই ভাইরাল স্ক্রিপ্ট ও হুক জেনারেটর</div>
+        <input type="text" id="creatorTopic" placeholder="যেমন: পাইথন দিয়ে টার্মিনাল হ্যাক, অ্যানিমেশন কার্টুন ভিডিও..." />
+        <button class="action-btn" onclick="generateViralPack()"><i class="fa-solid fa-wand-magic-sparkles"></i> ভাইরাল প্যাক তৈরি করুন</button>
 
-        <div id="creatorOutput" class="creator-output-box">
-          <div class="badge-pill">🔥 রিকমেন্ডেড হুক</div>
-          <h4 id="outHook" style="color: var(--accent-cyan); margin-bottom: 12px;"></h4>
-
-          <div class="badge-pill">🎬 স্ক্রিপ্ট কনসেপ্ট</div>
-          <p id="outScript" style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.6; margin-bottom: 14px;"></p>
-
-          <div class="badge-pill">🏷️ এসইও ট্যাগ ও হ্যাশট্যাগ</div>
-          <p id="outTags" style="color: var(--accent-purple); font-size: 0.85rem; font-weight: 600;"></p>
-        </div>
-      </div>
-    </div>
-
-    <!-- TAB 4: CRYPTO MARKET MONITOR -->
-    <div id="tab-crypto" class="tab-content">
-      <div class="crypto-grid">
-        <div class="coin-card">
-          <div class="coin-header">
-            <span class="coin-symbol">Bitcoin (BTC)</span>
-            <i class="fa-brands fa-bitcoin fa-lg" style="color: #f59e0b;"></i>
-          </div>
-          <div class="coin-val" id="btcVal">---</div>
-          <div class="coin-change positive" id="btcStat"><i class="fa-solid fa-arrow-trend-up"></i> লাইভ আপডেট</div>
-        </div>
-
-        <div class="coin-card">
-          <div class="coin-header">
-            <span class="coin-symbol">Ethereum (ETH)</span>
-            <i class="fa-brands fa-ethereum fa-lg" style="color: #6366f1;"></i>
-          </div>
-          <div class="coin-val" id="ethVal">---</div>
-          <div class="coin-change positive" id="ethStat"><i class="fa-solid fa-arrow-trend-up"></i> লাইভ আপডেট</div>
-        </div>
-
-        <div class="coin-card">
-          <div class="coin-header">
-            <span class="coin-symbol">Solana (SOL)</span>
-            <i class="fa-solid fa-bolt fa-lg" style="color: #14f195;"></i>
-          </div>
-          <div class="coin-val" id="solVal">---</div>
-          <div class="coin-change positive" id="solStat"><i class="fa-solid fa-arrow-trend-up"></i> লাইভ আপডেট</div>
-        </div>
-
-        <div class="coin-card">
-          <div class="coin-header">
-            <span class="coin-symbol">Binance Coin (BNB)</span>
-            <i class="fa-solid fa-coins fa-lg" style="color: #facc15;"></i>
-          </div>
-          <div class="coin-val" id="bnbVal">---</div>
-          <div class="coin-change positive" id="bnbStat"><i class="fa-solid fa-arrow-trend-up"></i> লাইভ আপডেট</div>
+        <div id="creatorOutput" style="display:none; margin-top:15px; padding:15px; background:#040711; border-radius:10px; border:1px dashed var(--accent-purple);">
+          <h4 id="outHook" style="color: var(--accent-cyan); margin-bottom: 8px;"></h4>
+          <p id="outScript" style="color: #cbd5e1; font-size: 0.88rem; line-height: 1.5; margin-bottom: 10px;"></p>
+          <p id="outTags" style="color: var(--accent-purple); font-size: 0.82rem; font-weight: 600;"></p>
         </div>
       </div>
     </div>
@@ -612,52 +614,68 @@
 
   <!-- Footer -->
   <footer>
-    <p>Engineered with Precision &bull; <strong>ROOT-OS Workstation</strong> &copy; 2026</p>
+    <p>Engineered with Precision &bull; <strong>EMON OS Workstation</strong> &copy; 2026</p>
   </footer>
 
   <script>
-    // Tab Switching Logic
+    // Tab Switcher
     function switchTab(tabId, event) {
       document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
       event.currentTarget.classList.add('active');
       document.getElementById(`tab-${tabId}`).classList.add('active');
     }
 
-    // 1. Terminal Logic
+    // Currency Converter
+    let currentUsdRate = 121.50;
+
+    function convertCurrency() {
+      const amt = parseFloat(document.getElementById('usdAmount').value) || 0;
+      const bdt = (amt * currentUsdRate).toFixed(2);
+      document.getElementById('bdtResult').value = `৳ ${Number(bdt).toLocaleString('en-US')}`;
+    }
+    convertCurrency();
+
+    // Live Dollar Rate Tick Simulation
+    setInterval(() => {
+      const delta = (Math.random() * 0.1 - 0.05);
+      currentUsdRate = +(currentUsdRate + delta).toFixed(2);
+      const valElem = document.getElementById('usdVal');
+      valElem.innerText = `৳${currentUsdRate.toFixed(2)}`;
+      document.getElementById('t-usd').innerText = `৳${currentUsdRate.toFixed(2)}`;
+      convertCurrency();
+    }, 4000);
+
+    // Terminal Commands
     const termInput = document.getElementById('termInput');
     const termOutput = document.getElementById('termOutput');
     const termBody = document.getElementById('termBody');
 
-    function focusTerminal() {
-      termInput.focus();
-    }
+    function focusTerminal() { termInput.focus(); }
 
     const commandRegistry = {
-      help: `উপলব্ধ কমান্ডসমূহ:
-  • whoami    : সিস্টেম ও ডেভেলপার পরিচিতি
-  • skills    : টেকনোলজি ও অটোমেশন দক্ষতা
-  • projects  : সাম্প্রতিক প্রজেক্টস
+      help: `কমান্ড তালিকা:
+  • emon      : সিস্টেম ওনার প্রোফাইল
+  • hello     : সিস্টেম ইন্টারঅ্যাকশন
+  • whoami    : ডেভেলপার পরিচিতি
+  • skills    : প্রযুক্তিগত দক্ষতা
+  • projects  : প্রজেক্টসমূহ
   • date      : বর্তমান সময় ও তারিখ
   • clear     : টার্মিনাল পরিষ্কার করা`,
-      whoami: `ব্যবহারকারী: Emon Khan (Root Developer)
-রোল: Python Automation Specialist & Digital Content Creator
-মিশন: আধুনিক টুলিং ও অটোমেশন দিয়ে সমাধান তৈরি করা।`,
-      skills: `[+] Python, WebSockets, Pandas, NumPy
-[+] Automation & Scripting (Termux/Linux)
-[+] Full-Stack Frontend Engineering (HTML5/CSS3/Modern JS)
-[+] AI Prompt Architecture & Video Production`,
-      projects: `1. ROOTX Automations - কাস্টম স্ক্রিপ্টিং স্যুট
-2. Instant Cloud Arcade - মাল্টি-গেম ক্লাউড পোর্টাল
-3. Algorithmic Trend Engine - টেকনিক্যাল মার্কেট অ্যানালাইসিস`,
+      emon: `[+] নাম: Emon Khan (ইমন ইসলাম)
+[+] ডেজিগনেশন: Python Developer, Automation Architect & Creator
+[+] সিস্টেম: EMON OS Core v2.6 Online`,
+      hello: `হ্যালো! EMON OS ওয়ার্কস্টেশনে আপনাকে স্বাগতম। আপনি সফলভাবে কানেক্টেড আছেন।`,
+      whoami: `Emon Khan | Python Dev & Content Creator`,
+      skills: `Python, WebSockets, Pandas, NumPy, Termux, Frontend Engineering`,
+      projects: `1. ROOTX Automations\n2. EMON OS Dashboard\n3. Cloud Arcade Hub`,
       date: () => new Date().toLocaleString('bn-BD')
     };
 
     termInput.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         const cmd = this.value.trim().toLowerCase();
-        if (cmd === '') return;
+        if (!cmd) return;
 
         if (cmd === 'clear') {
           termOutput.innerText = '';
@@ -665,100 +683,93 @@
           return;
         }
 
-        let response = '';
-        if (commandRegistry[cmd]) {
-          response = typeof commandRegistry[cmd] === 'function' ? commandRegistry[cmd]() : commandRegistry[cmd];
-        } else {
-          response = `কমান্ডটি পাওয়া যায়নি: '${cmd}'। কমান্ডের তালিকা দেখতে লিখুন: 'help'`;
-        }
+        let res = commandRegistry[cmd] 
+          ? (typeof commandRegistry[cmd] === 'function' ? commandRegistry[cmd]() : commandRegistry[cmd])
+          : `কমান্ডটি পাওয়া যায়নি: '${cmd}'। তালিকা দেখতে 'help' লিখুন।`;
 
-        termOutput.innerText += `\nvisitor@rootx:~$ ${cmd}\n${response}\n`;
+        termOutput.innerText += `\nvisitor@emon-os:~$ ${cmd}\n${res}\n`;
         this.value = '';
         termBody.scrollTop = termBody.scrollHeight;
       }
     });
 
-    // 2. DevTools Engine
-    function formatJSON() {
-      const input = document.getElementById('jsonInput').value;
-      const res = document.getElementById('jsonResult');
-      try {
-        const parsed = JSON.parse(input);
-        document.getElementById('jsonInput').value = JSON.stringify(parsed, null, 2);
-        res.style.color = 'var(--accent-green)';
-        res.innerText = '✓ JSON সম্পূর্ণ সঠিক এবং ফর্ম্যাট সম্পন্ন!';
-      } catch (err) {
-        res.style.color = '#ef4444';
-        res.innerText = '✕ অবৈধ JSON ফরম্যাট: ' + err.message;
-      }
-    }
+    // Real-Time Binance Crypto API
+    let prevPrices = {};
 
-    function testRegEx() {
-      const pat = document.getElementById('regexPattern').value;
-      const text = document.getElementById('regexText').value;
-      const res = document.getElementById('regexResult');
-      try {
-        const regex = new RegExp(pat, 'g');
-        const matches = text.match(regex);
-        if (matches) {
-          res.innerText = `ম্যাচ পাওয়া গেছে (${matches.length} টি): [ ${matches.join(', ')} ]`;
-        } else {
-          res.innerText = 'কোনো মিল পাওয়া যায়নি।';
-        }
-      } catch (e) {
-        res.innerText = 'ভুল রেজেক্স সিনট্যাক্স!';
-      }
-    }
-
-    // 3. Creator Studio Logic
-    function generateViralPack() {
-      const topic = document.getElementById('creatorTopic').value.trim();
-      if (!topic) {
-        alert('অনুগ্রহ করে একটি টপিক লিখুন!');
-        return;
-      }
-
-      document.getElementById('outHook').innerText = `"${topic}: যা আপনি আগে কখনও জানতেন না!"`;
-      document.getElementById('outScript').innerText = `[Scene 1: ৩ সেকেন্ডের মধ্যে স্ক্রিনে চমকপ্রদ ভিজ্যুয়াল] -> "${topic} নিয়ে মানুষের সবচেয়ে বড় ভুল ধারণাটি কী জানেন?" \n[Scene 2: মূল সমাধান এবং বাস্তব প্রয়োগ ব্যাখ্যা] -> "ধাপ ১: সঠিক টেকনিক অনুসরণ করা..." \n[Scene 3: কল টু অ্যাকশন] -> "পরবর্তী পার্ট দেখতে এখনই ফলো করুন!"`;
-      document.getElementById('outTags').innerText = `#${topic.replace(/\s+/g, '')} #Trending #TechHacks #ReelsViral #Shorts #Automation`;
-
-      document.getElementById('creatorOutput').style.display = 'block';
-    }
-
-    // 4. Crypto Real-time Price Tracker
-    async function fetchCryptoPrices() {
+    async function fetchCrypto() {
       try {
         const res = await fetch('https://api.binance.com/api/v3/ticker/price?symbols=["BTCUSDT","ETHUSDT","SOLUSDT","BNBUSDT"]');
         const data = await res.json();
 
-        data.forEach(item => {
-          const price = parseFloat(item.price).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-          if (item.symbol === 'BTCUSDT') {
-            document.getElementById('btcVal').innerText = `$${price}`;
-            document.getElementById('t-btc').innerText = `$${price}`;
-          } else if (item.symbol === 'ETHUSDT') {
-            document.getElementById('ethVal').innerText = `$${price}`;
-            document.getElementById('t-eth').innerText = `$${price}`;
-          } else if (item.symbol === 'SOLUSDT') {
-            document.getElementById('solVal').innerText = `$${price}`;
-            document.getElementById('t-sol').innerText = `$${price}`;
-          } else if (item.symbol === 'BNBUSDT') {
-            document.getElementById('bnbVal').innerText = `$${price}`;
-            document.getElementById('t-bnb').innerText = `$${price}`;
+        data.forEach(c => {
+          const price = parseFloat(c.price);
+          const formatted = `$${price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+          let id = '', tid = '';
+
+          if (c.symbol === 'BTCUSDT') { id = 'btcVal'; tid = 't-btc'; }
+          else if (c.symbol === 'ETHUSDT') { id = 'ethVal'; tid = 't-eth'; }
+          else if (c.symbol === 'SOLUSDT') { id = 'solVal'; tid = 't-sol'; }
+          else if (c.symbol === 'BNBUSDT') { id = 'bnbVal'; tid = 't-bnb'; }
+
+          const elem = document.getElementById(id);
+          const tElem = document.getElementById(tid);
+
+          if (elem) {
+            if (prevPrices[c.symbol] && prevPrices[c.symbol] !== price) {
+              elem.classList.remove('flash-up', 'flash-down');
+              void elem.offsetWidth;
+              elem.classList.add(price > prevPrices[c.symbol] ? 'flash-up' : 'flash-down');
+            }
+            elem.innerText = formatted;
+            if (tElem) tElem.innerText = formatted;
+            prevPrices[c.symbol] = price;
           }
         });
       } catch (e) {
-        // Fallback demo prices if offline
-        document.getElementById('btcVal').innerText = '$88,450.00';
-        document.getElementById('ethVal').innerText = '$3,420.50';
-        document.getElementById('solVal').innerText = '$192.10';
-        document.getElementById('bnbVal').innerText = '$612.30';
+        document.getElementById('btcVal').innerText = '$84,298.00';
+        document.getElementById('ethVal').innerText = '$2,664.81';
+        document.getElementById('solVal').innerText = '$114.50';
+        document.getElementById('bnbVal').innerText = '$763.57';
       }
     }
 
-    // Initialize Auto-Polling
-    fetchCryptoPrices();
-    setInterval(fetchCryptoPrices, 10000);
+    fetchCrypto();
+    setInterval(fetchCrypto, 4000);
+
+    // Tools Helpers
+    function formatJSON() {
+      const inp = document.getElementById('jsonInput').value;
+      const res = document.getElementById('jsonResult');
+      try {
+        document.getElementById('jsonInput').value = JSON.stringify(JSON.parse(inp), null, 2);
+        res.style.color = 'var(--accent-green)';
+        res.innerText = '✓ JSON সম্পূর্ণ সঠিক এবং ফর্ম্যাট সম্পন্ন!';
+      } catch (err) {
+        res.style.color = 'var(--accent-red)';
+        res.innerText = '✕ অবৈধ JSON!';
+      }
+    }
+
+    function testRegEx() {
+      const p = document.getElementById('regexPattern').value;
+      const t = document.getElementById('regexText').value;
+      const r = document.getElementById('regexResult');
+      try {
+        const matches = t.match(new RegExp(p, 'g'));
+        r.innerText = matches ? `ম্যাচ পাওয়া গেছে (${matches.length} টি): [ ${matches.join(', ')} ]` : 'কোনো মিল পাওয়া যায়নি।';
+      } catch (e) {
+        r.innerText = 'ভুল রেজেক্স সিনট্যাক্স!';
+      }
+    }
+
+    function generateViralPack() {
+      const topic = document.getElementById('creatorTopic').value.trim();
+      if (!topic) return alert('টপিক লিখুন!');
+      document.getElementById('outHook').innerText = `"${topic}: সিক্রেট যা কেউ প্রকাশ করে না!"`;
+      document.getElementById('outScript').innerText = `[Scene 1: হুক] -> "${topic} নিয়ে কাজ করার সময় এই ভুলটি কখনোই করবেন না।" \n[Scene 2: কোড/সমাধান ডেমো] -> "মাত্র এক লাইনের কমান্ড দিয়ে এটি ফিক্স করুন..."`;
+      document.getElementById('outTags').innerText = `#${topic.replace(/\s+/g, '')} #Trending #Automation #TechTips`;
+      document.getElementById('creatorOutput').style.display = 'block';
+    }
   </script>
 </body>
 </html>
